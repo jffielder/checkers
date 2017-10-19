@@ -1,0 +1,31 @@
+game
+
+variable new board =
+spaces = [ [0..7], [0..7] ]
+board.spaces [1,2] 
+
+
+
+
+analyze_moves(piece)
+  returns array of destinations that a passed piece can move to.
+  check if adjacent squares contain enemy piece
+
+    example:
+              analyze_moves([test_loc])
+
+
+
+                loc = piece.get_loc
+                avail_moves = []
+                if piece.king_status == true
+                  directions = [ [-1,1], [1,1], [-1,-1], [1,-1] ]
+                else
+                  directions = [ [-1,1], [1,1] ]
+                end
+
+                for dir in directions
+                  test_loc = [loc[0]+dir[0], loc[1]+dir[1] ]
+                  if game.board_at() is None
+                    avail_moves << dir
+                  else if game.board_at(test_loc).
