@@ -1,8 +1,7 @@
-game
 
-variable new board =
-spaces = [ [0..7], [0..7] ]
-board.spaces [1,2] 
+variable new board
+spaces = new dict [ [0..7], [0..7] ]
+board.spaces [1,2]
 
 
 
