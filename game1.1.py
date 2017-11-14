@@ -1,16 +1,16 @@
-
+#pieces contain their current location, valid moves at that location,
 class Piece:
     def __init__(self, params):
         self.params = params
 
-    def get_piece_rules(piece):
-        '''Returns rules for a piece ex.
+    def get_move_vector(piece):
+        '''Returns movement vectors for a piece ex.
         [ [1,1], [-1,-1] ]
         '''
         raise NotImplementedError
 
 
-
+# board used to store pieces
 class Board:
 
     def __init__(self, board_size, player_count):
@@ -25,6 +25,22 @@ class Board:
 
     def end():
         raise NotImplementedError
+
+# Game controls player turns, valid player selections, valid piece moves, valid manipulation of the board
+class GameEngine:
+
+    def __init__(self):
+        self.players = players
+        self.player_turn = 1
+        print "New game created"
+        pass
+    #boolean return that checks if game has ended
+    def game_over():
+        raise NotImplementedError
+
+    def turn():
+
+class CheckerGameEngine(Game):
 
 
 class CheckerPiece(Piece):
