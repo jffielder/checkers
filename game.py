@@ -130,9 +130,15 @@ def main():
     print "checkers"
 
     while not game.over():
+        #draw board
         game.draw()
+
+        #player selects
         print "player 1 choose piece"
+
         start_loc = tuple(map(int,raw_input().split(',')))
+
+        #TODO Refactor
         if game.board.pos.get(start_loc, 0) is not 0:
             if game.board.pos[start_loc].player is game.current_player:
         move_l = game.board.analyze_loc(start_loc)
