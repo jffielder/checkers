@@ -81,10 +81,11 @@ class CheckerGameEngine(GameEngine):
             self.board.grid[(selection)] = None
 
             #if distance moved is 2 remove jumped piece
-            if move[0] - selection[0] % 2 is 0:
-                jx = move[0] - selection[0] / 2
-                jy = move[1] - selection[1] / 2
-                jloc = (move[0] - jx, move[1] - jy)
+            if (move[0] - selection[0]) % 2 is 0:
+                print "dist = 2"
+                jx = (move[0] - selection[0]) / 2
+                jy = (move[1] - selection[1]) / 2
+                jloc = ((move[0] - jx), (move[1] - jy))
                 self.board.grid[(jloc)] = None
 
 
