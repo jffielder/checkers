@@ -42,8 +42,8 @@ class CheckerGameEngine(GameEngine):
     def __init__ (self):
         self.board = CheckerBoard( (8,8) )
         self.player_turn = 1
-        self.players = 2
-        self.board.grid[(3,3)]= CheckerPiece(2,(3,3))
+        self.players = 2 #used to switch players each turn
+        self.board.grid[(3,3)]= CheckerPiece(2,(3,3)) #testing piece
         pass
 
     def run(self):
@@ -52,32 +52,37 @@ class CheckerGameEngine(GameEngine):
             print "Player", self.player_turn, "Turn:"
 
             #get input
-            try:
-                selection = input("Select a piece x,y:   ")
-            except ValueError:
-                print "Input error, try again"
+            while True:
+                try:
+                    selection = input("Select a piece x,y:   ")
+                except ValueError:
+                    print "Input error, try again"
 
-            #check input
+                #check input
 
-            #check if location is empty, then if piece is the players, then determines piecs moves
-            if isinstance(self.board.grid.get(selection),Piece):
-                if self.board.grid[selection].player is self.player_turn:
-                    self.movement_logic(self.board.grid[selection])
-                    print self.board.grid[selection].moves
+                #check if location is empty, then if piece is the players, then determines piecs moves, then if piece has any moves, continue
+
+                if isinstance(self.board.grid.get(selection),Piece):
+                    if self.board.grid[selection].player is self.player_turn:
+                        self.movement_logic(self.board.grid[selection])
+                        if len(self.board.grid[(selection)].moves) is 0:
+                            continue
+                        print self.board.grid[selection].moves
+                        break
+                    else:
+                        print "Not your piece, try again"
                 else:
-                    print "Not your piece, try again"
-            else:
-                print "No piece selected, try again"
+                    print "No piece selected, try again"
 
             #get desired move
 
             move = input( "Select move: ")
             while move not in self.board.grid.get(selection).moves:
-                move = ("Invalid Move, Select move: ")
+                move = input("Invalid Move, Select move: ")
 
             #make move, remove piece if jump made
 
-            self.board.grid[(move)] = self.board.grid[(selection)]
+            self.board.grid[(move)] = CheckerPiece(self.player_turn, move)
             self.board.grid[(selection)] = None
 
             #if distance moved is 2 remove jumped piece
@@ -134,9 +139,9 @@ class CheckerGameEngine(GameEngine):
             yy = y0+y
             #while move is in bounds
             space_needed = False
-            #while xx in range(0, grid_size[0]) and yy in range(0, grid_size[1]):
+            while xx in range(0, grid_size[0]) and yy in range(0, grid_size[1]):
                 #if space has a piece
-            for ii in range(1,4):
+            #for ii in range(1,4):
                 print "in loop"
                 if isinstance(self.board.grid[(xx,yy)], Piece):
                     #if the piece is an opponents
